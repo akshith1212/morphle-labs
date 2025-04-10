@@ -8,14 +8,14 @@ app = Flask(__name__)
 
 @app.route("/htop")
 def htop():
-    full_name = "V Akshith Goud"  # Replace with your real full name
+    full_name = "V Akshith Goud"  
     username = os.getenv("USER") or os.getenv("USERNAME") or "unknown"
     
-    # Get current IST time
+
     ist = pytz.timezone('Asia/Kolkata')
     server_time = datetime.now(ist).strftime('%Y-%m-%d %H:%M:%S %Z%z')
 
-    # Get top output
+
     try:
         top_output = subprocess.check_output(['top', '-b', '-n', '1']).decode('utf-8')
     except Exception as e:
@@ -28,7 +28,7 @@ def htop():
     <pre>{top_output}</pre>
     """
 
-# Optional: define root route if needed
+
 @app.route("/")
 def index():
     return "Go to <a href='/htop'>/htop</a> to see system info."
